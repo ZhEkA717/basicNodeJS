@@ -113,6 +113,7 @@ const http = require('http');
 // GET -> получить обработать
 
 http.createServer((request,response) => {
-    console.log('server work');
-    response.end('goo');
-}).listen(3000);
+    console.log('server pidr');
+    console.log(request);
+    response.end('sdgsgsg');
+}).listen(4000);
