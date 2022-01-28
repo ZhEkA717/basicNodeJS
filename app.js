@@ -108,12 +108,126 @@
 //         console.log('...Done');
 //     });
 
-const http = require('http');
+// post and get requests
 
-// GET -> получить обработать
+// const http = require('http');
+// const url = require('url');
+// const {parse} = require('querystring');
 
-http.createServer((request,response) => {
-    console.log('server work');
-    console.log(request.method);
-    response.end('sdgsgsg');
-}).listen(3000);
+// http.createServer((request,response) => {
+//     console.log('server work');
+//     if(request.method == "GET"){
+//         // GET -> получить обработать
+//         console.log(request.method);
+//         let urlRequest = url.parse(request.url,true);
+//         console.log(urlRequest.query.test);// ! GET params
+//         if(urlRequest.query.test % 2 == 0){
+//             response.end('even');
+//         }else{
+//             response.end('odd');
+//         }
+//     }else{
+//         // POST 
+//         let body = "";
+//         request.on('data',chunk =>{
+//             body +=chunk.toString();
+//         });
+
+//         request.on('end',()=>{
+//             console.log(body);
+//             let params = parse(body);
+//             console.log(params);
+//             console.log(params.name);
+//             response.end('OK');
+//         });
+//     }
+   
+// }).listen(3000);
+
+// routing
+
+// const http = require('http');
+// const url = require('url');
+
+// http.createServer(function(req,res){
+//     let urlParts = url.parse(req.url);
+//     // console.log(urlParts);
+//     console.log("====================");
+//             console.log(urlParts.pathname);
+//     console.log("====================");
+//      if(req.method == "GET"){
+//          switch(urlParts.pathname){
+//              case "/":
+//                  homepage(req,res);
+//                  break;
+//              case "/about":
+//                  about(req,res);
+//                  break;
+//              default:
+//                  page404(req,res);
+//                  break;
+//          }
+//      }else if(req.method == "POST"){
+//         switch(urlParts.pathname){
+//             case "/about":
+//                 about2(req,res);
+//                 break;
+//             default:
+//                 page404(req,res);
+//                 break;
+//         }
+//      }else{
+//          page404(req,res);
+//      }
+
+// }).listen(3000);
+
+// console.log("Server running at http://localhost:3000");
+
+// function homepage(req,res){
+//     res.end("homepage");
+// }
+// function about(req,res){
+//     res.end("about");
+// }
+// function about2(req,res){
+//     res.end("about post");
+// }
+// function page404(req,res){
+//     res.end("404");
+// }
+
+// ASINC AWAIT запросы в БД
+// скачиваем расшираение npm i mysql2
+
+// const mysql = require('mysql2/promise');
+// const config = require('./config');
+
+// async function main(){
+//     const conn = await mysql.createConnection(config);
+//     const [rows, fields] = await conn.execute('select * from user where id=1');
+//     // console.log(rows[0].firstname);
+//     // await conn.execute('update user set firstname="'+rows[0].firstname+'" where id = 2 ');
+//     conn.end();
+//     return rows;
+// }
+
+// async function f(){
+//     let a = await main();
+//     console.log(a);
+// }
+// f();
+
+// млдули require
+
+const config = require('./config');
+const config2 = require('./config2');
+const f = require('./fun');
+const f2 =require('./f2');
+
+console.log('node ------------ok');
+console.log(config);
+console.log(config.f(3,4));
+console.log(config2);
+console.log(f(2,3));
+console.log(f2(12,12)); 
